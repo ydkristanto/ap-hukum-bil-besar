@@ -85,7 +85,7 @@ ui <- navbarPage(
                  div(h4("Kode sumber",
                         style = "font-size: inherit;
                              font-weight: bold")),
-                 div(p("Kode sumber aplikasi ini tersedia di", a("repositori Github.", href = "https://github.com/ydkristanto/apl-selang-kepercayaan", target = "_blank"), "Jika Anda ingin melaporkan masalah atau meminta fitur tambahan terhadap aplikasi ini, silakan", a("buat sebuah isu", href = "https://github.com/ydkristanto/apl-selang-kepercayaan/issues", target = "_blank"), "atau lebih baik lagi", a("minta penarikan", href = "https://github.com/ydkristanto/apl-selang-kepercayaan/pulls", target = "_blank"), "di repositori tersebut."))
+                 div(p("Kode sumber aplikasi ini tersedia di", a("repositori Github.", href = "https://github.com/ydkristanto/apl-hukum-bil-besar", target = "_blank"), "Jika Anda ingin melaporkan masalah atau meminta fitur tambahan terhadap aplikasi ini, silakan", a("buat sebuah isu", href = "https://github.com/ydkristanto/apl-hukum-bil-besar/issues", target = "_blank"), "atau lebih baik lagi", a("minta penarikan", href = "https://github.com/ydkristanto/apl-hukum-bil-besar/pulls", target = "_blank"), "di repositori tersebut."))
                ),
                wellPanel(
                  div(h4("Lisensi",
@@ -96,11 +96,8 @@ ui <- navbarPage(
                )
              ),
              mainPanel(
-               div(h3("Aplikasi Shiny Selang Kepercayaan")),
-               div(p("Aplikasi interaktif ini dimaksudkan untuk mendemonstrasikan selang-selang kepercayaan proporsi dan rerata yang mencakup parameter populasinya. Beberapa ide penting statistik yang ditunjukkan oleh aplikasi ini antara lain sebagai berikut."), align = "justify"),
-               div(tags$ul(tags$li("Semakin besar tingkat kepercayaannya, semakin besar persentase selang kepercayaan yang mencakup parameter populasinya."),
-                           tags$li("Semakin besar tingkat kepercayaannya, pias galatnya juga semakin besar. Hal ini ditunjukkan dengan semakin panjangnya selang kepercayaannya."),
-                           tags$li("Untuk rerata, ketika ukuran sampelnya kecil dan populasinya tidak berdistribusi normal, hubungan antara tingkat kepercayaan dan persentase pencakupan semakin tidak menentu.")), align = "justify"),
+               div(h3("Aplikasi Shiny Hukum Bilangan Besar")),
+               div(p("Aplikasi interaktif ini ditujukan untuk mendemonstrasikan Hukum Bilangan Besar. Berdasarkan hukum ini, rerata sampel akan mendekati rerata populasinya ketika ukuran sampel tersebut bertambah besar. Sebagai catatan, sampel-sampel tersebut merupakan sampel-sampel yang bebas dan diperoleh dari populasi yang sama."), align = "justify"),
                hr(),
                div(p("Aplikasi interaktif ini dikembangkan dengan menggunakan bahasa pemrogram", a("R", href = "https://www.R-project.org/", target = "_blank"), "dan paket", a("Shiny.", href = "https://CRAN.R-project.org/package=shiny", target = "_blank"), "Paket", a("shinylive", href = "https://posit-dev.github.io/r-shinylive/", target = "_blank"), "digunakan untuk mengekspor aplikasi ini agar dapat dijalankan di peramban web tanpa peladen R yang terpisah."), align = "justify"),
                div(p("Pengembang dan pemelihara aplikasi ini adalah", a("Yosep Dwi Kristanto,", href = "https://people.usd.ac.id/~ydkristanto/", target = "_blank"), "seorang dosen dan peneliti di program studi", a("Pendidikan Matematika,", href = "https://usd.ac.id/s1pmat", target = "_blank"), a("Universitas Sanata Dharma,", href = "https://www.usd.ac.id/", target = "_blank"), "Yogyakarta."), align = "justify"),
