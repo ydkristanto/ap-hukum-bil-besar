@@ -236,33 +236,69 @@ server <- function(input, output) {
   ## Plot distribusi sampel ----
   output$plot_dist <- renderPlot({
     data_stat_sampel <- stat_sampel()
+    data_rerata <- data_stat_sampel %>%
+      group_by(id_sampel) %>%
+      summarize(rerata_sampel = mean(nilai))
+    
+    dist <- input$dist_pop
+    if (dist == "normal") {
+      rerata_riil <- input$rerata_pop
+    } else if (dist == "binom") {
+      rerata_riil <- input$ukuran_pop * input$peluang_pop
+    } else if (dist == "seragam") {
+      rerata_riil <- (input$minmaks_pop[1] + input$minmaks_pop[2]) / 2
+    } else if (dist == "gamma") {
+      rerata_riil <- input$bentuk_pop * input$skala_pop
+    }
     
     k <- input$k_sampel
     if (k == 1) {
       data_stat_sampel %>% 
         ggplot(aes(x = nilai)) +
-        geom_histogram(aes(y = after_stat(density)),
-                       color = "white", fill = "#1b9e77") +
-        geom_density(linewidth = 1.5) +
+        geom_histogram(aes(y = after_stat(density),
+                           fill = id_sampel),
+                       color = "white", alpha = .4) +
+        geom_density(linewidth = 1.5, show.legend = FALSE) +
+        facet_grid(id_sampel ~ .) +
+        geom_vline(data = data_rerata,
+                   aes(xintercept = rerata_sampel,
+                       color = id_sampel),
+                   linetype = "dashed", linewidth = 1,
+                   show.legend = FALSE) +
+        geom_vline(xintercept = rerata_riil,
+                   linetype = "dashed", linewidth = 1,
+                   show.legend = FALSE) +
         theme_bw(base_size = 16) +
+        scale_fill_brewer(palette = "Dark2",
+                          name = "ID Sampel") +
+        scale_color_brewer(palette = "Dark2") +
         theme(legend.position = "bottom",
               plot.title = element_text(face = "bold"),
               axis.title.y = element_blank(),
               axis.text.y = element_blank(),
               axis.ticks.y = element_blank()) +
-        labs(title = paste0("Distribusi Data Sampel"),
+        labs(title = paste0("Distribusi Data ", k, " Sampel"),
              x = "Nilai")
     } else {
       data_stat_sampel %>% 
         ggplot(aes(x = nilai)) +
         geom_histogram(aes(y = after_stat(density),
                            fill = id_sampel),
-                       color = "white") +
+                       color = "white", alpha = .4) +
         geom_density(linewidth = 1.5, show.legend = FALSE) +
         facet_grid(id_sampel ~ .) +
+        geom_vline(data = data_rerata,
+                   aes(xintercept = rerata_sampel,
+                       color = id_sampel),
+                   linetype = "dashed", linewidth = 1,
+                   show.legend = FALSE) +
+        geom_vline(xintercept = rerata_riil,
+                   linetype = "dashed", linewidth = 1,
+                   show.legend = FALSE) +
         theme_bw(base_size = 16) +
         scale_fill_brewer(palette = "Dark2",
                           name = "ID Sampel") +
+        scale_color_brewer(palette = "Dark2") +
         theme(legend.position = "bottom",
               plot.title = element_text(face = "bold"),
               axis.title.y = element_blank(),
